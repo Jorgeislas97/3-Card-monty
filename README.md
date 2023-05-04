@@ -1,1 +1,1 @@
-# 3-Card-monty
+# 3-Card-Monty
