@@ -1,13 +1,16 @@
+// Select all card elements
 const cards = document.querySelectorAll(".card");
 
-function checkWinner(cardIndex) {
-    if (gameOver) {
-        return;
-    }
+// Select the status message element
+const statusMsg = document.getElementById("status-msg");
 
-    if (selectedBet === null) {
-        statusMsg.textContent = "Place a bet first!";
-        return;
-    }
+// Create a reset button element
+const resetButton = document.createElement("button");
 
-    let winningIndex = Math.floor(Math.random() * 3);
+resetButton.textContent = "Reset Game";
+resetButton.style.display = "none";
+
+
+
+
+let winningIndex = Math.floor(Math.random() * 3);
