@@ -31,6 +31,28 @@ resetButton.addEventListener("click", () => {
     gameOver = false;
     selectedBet = null;
 });
+document.body.appendChild(resetButton);
 
+function updateWallet() {
+    moneyGauge.textContent = `$${wallet}`;
+    if (wallet === 0) {
+        statusMsg.textContent = "You lost!";
+        resetButton.style.display = "inline";
+        gameOver = true;
+    } else if (wallet < 0) {
+        statusMsg.textContent = "RUN!!!";
+        resetButton.style.display = "inline";
+        gameOver = true;
+    }
+}
+function checkWinner(cardIndex) {
+    if (gameOver) {
+        return;
+    }
 
-let winningIndex = Math.floor(Math.random() * 3);
+    if (selectedBet === null) {
+        statusMsg.textContent = "Place a bet first!";
+        return;
+    }
+
+    let winningIndex = Math.floor(Math.random() * 3); }
