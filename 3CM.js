@@ -1,28 +1,16 @@
-// Select all card elements
 const cards = document.querySelectorAll(".card");
-
-// Select the status message element
+const bet1 = document.getElementById("bet-1");
+const bet100 = document.getElementById("bet-100");
+const moneyGauge = document.getElementById("money-gauge");
 const statusMsg = document.getElementById("status-msg");
-
-// Create a reset button element
 const resetButton = document.createElement("button");
 
-const moneyGauge = document.getElementById("money-gauge");
-
-const bet1 = document.getElementById("bet-1");
-
-const bet100 = document.getElementById("bet-100");
-
 let wallet = 100;
-
-let selectedbet = null;
-
-let gameover = false;
+let selectedBet = null;
+let gameOver = false;
 
 resetButton.textContent = "Reset Game";
-
 resetButton.style.display = "none";
-
 resetButton.addEventListener("click", () => {
     wallet = 100;
     updateWallet();
@@ -45,6 +33,7 @@ function updateWallet() {
         gameOver = true;
     }
 }
+
 function checkWinner(cardIndex) {
     if (gameOver) {
         return;
@@ -55,10 +44,9 @@ function checkWinner(cardIndex) {
         return;
     }
 
-    let winningIndex = Math.floor(Math.random() * 3); }
+    let winningIndex = Math.floor(Math.random() * 3);
 
-
-
+    // Reduce winning odds to 1% when betting $100
     if (selectedBet === 100) {
         if (Math.random() > 0.01) {
             winningIndex = (cardIndex + 1) % 3;
@@ -75,3 +63,20 @@ function checkWinner(cardIndex) {
 
     updateWallet();
     selectedBet = null;
+}
+
+cards.forEach(card => {
+    card.addEventListener("click", () => {
+        checkWinner(parseInt(card.getAttribute("data-index")));
+    });
+});
+
+bet1.addEventListener("click", () => {
+    selectedBet = 1;
+    statusMsg.textContent = "You bet $1";
+});
+
+bet100.addEventListener("click", () => {
+    selectedBet = 100;
+    statusMsg.textContent = "You bet $100";
+});
