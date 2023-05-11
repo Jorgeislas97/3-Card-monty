@@ -56,3 +56,22 @@ function checkWinner(cardIndex) {
     }
 
     let winningIndex = Math.floor(Math.random() * 3); }
+
+
+
+    if (selectedBet === 100) {
+        if (Math.random() > 0.01) {
+            winningIndex = (cardIndex + 1) % 3;
+        }
+    }
+
+    if (cardIndex === winningIndex) {
+        wallet += selectedBet;
+        statusMsg.textContent = "You won!";
+    } else {
+        wallet -= selectedBet;
+        statusMsg.textContent = "You lost!";
+    }
+
+    updateWallet();
+    selectedBet = null;
