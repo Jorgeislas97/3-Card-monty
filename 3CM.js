@@ -23,4 +23,14 @@ resetButton.textContent = "Reset Game";
 
 resetButton.style.display = "none";
 
+resetButton.addEventListener("click", () => {
+    wallet = 100;
+    updateWallet();
+    statusMsg.textContent = "";
+    resetButton.style.display = "none";
+    gameOver = false;
+    selectedBet = null;
+});
+
+
 let winningIndex = Math.floor(Math.random() * 3);
